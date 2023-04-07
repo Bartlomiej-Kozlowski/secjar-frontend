@@ -1,16 +1,21 @@
-import GeneralApiResponseDTO from "../ts/interfaces/GeneralApiResponseDTO"
-import axios, {AxiosError} from "axios"
+import axios, { AxiosError } from "axios"
 import ApiErrorResponseDTO from "../ts/interfaces/ApiErrorResponseDTO"
+import GeneralApiResponseDTO from "../ts/interfaces/GeneralApiResponseDTO"
 
-export const createDirectory = async (directoryName: string): Promise<GeneralApiResponseDTO<{message: string}>> => {
+export const createDirectory = async (directoryName: string, parentDirectoryUuid?: string): Promise<GeneralApiResponseDTO<string>> => {
     try {
-        const response = await axios.post("http://localhost:8080/fileSystemEntries", {
-            'directoryName': directoryName
-        }, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        const response = await axios.post(
+            "http://localhost:8080/fileSystemEntries",
+            {
+                directoryName,
+                parentDirectoryUuid,
             },
-        })
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+                },
+            }
+        )
         return { data: response.data.fileSystemEntryInfoList }
     } catch (err) {
         const error = err as AxiosError

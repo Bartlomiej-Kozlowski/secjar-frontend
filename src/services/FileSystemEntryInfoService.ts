@@ -157,3 +157,22 @@ export const shareFileSystemEntry = async (fileSystemEntriesUuid: string[], shar
         return { error: data?.status }
     }
 }
+
+export const restoreFileSystemEntry = async (fileSystemEntryUuid: string): Promise<GeneralApiResponseDTO<void>> => {
+    try {
+        const response = await axios.post(`http://localhost:8080/fileSystemEntries/${fileSystemEntryUuid}/restore`, null, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            },
+        })
+
+        return {}
+    } catch (err) {
+        const error = err as AxiosError
+        const data = error.response
+
+        console.log(error)
+
+        return { error: data?.status }
+    }
+}

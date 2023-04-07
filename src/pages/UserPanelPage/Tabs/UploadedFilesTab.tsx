@@ -1,6 +1,6 @@
 import React from "react"
 import { useOutletContext } from "react-router"
-import DirectoryNameSetCard from "../../../components/DirectoryNameSetCard"
+import DirectoryCreatePopup from "../../../components/FileActionsPopups/DirectoryCreatePopup"
 import FileMovePopup from "../../../components/FileActionsPopups/FileMovePopup"
 import FileSharePopup from "../../../components/FileActionsPopups/FileSharePopup"
 import FileUploadPopup from "../../../components/FileActionsPopups/FileUploadPopup"
@@ -12,10 +12,11 @@ const UploadedFilesTab: React.FC = () => {
     const [isFileMovePopupVisible, setIsFileMovePopupVisible] = React.useState(false)
     const [isFileSharePopupVisible, setIsFileSharePopupVisible] = React.useState(false)
 
-    const [directoryCreateCardVisible, setDirectoryCreateCardVisible] = React.useState(false)
+    const [isDirectoryCreatePopupVisible, setIsDirectoryCreatePopupVisible] = React.useState(false)
 
     const [fileUploadDirectory, setFileUploadDirectory] = React.useState<string | undefined>(undefined)
     const [targetFileUuid, setTargetFileUuid] = React.useState("")
+    const [targetDirUuid, setTargetDirUuid] = React.useState<string | undefined>()
 
     const { fileSystemEntriesInfoList, refreshFileSystemEntriesInfoList } = useOutletContext<fileSystemEntriesInfoListContextType>()
 
@@ -45,6 +46,15 @@ const UploadedFilesTab: React.FC = () => {
         setIsFileSharePopupVisible(true)
     }
 
+    const openDirectoryCreatePopup = (targetFileUuid?: string) => {
+        setTargetDirUuid(targetFileUuid)
+        setIsDirectoryCreatePopupVisible(true)
+    }
+
+    const closeDirectoryCreatePopup = () => {
+        setIsDirectoryCreatePopupVisible(false)
+    }
+
     return (
         <>
             <h2>Przesłane pliki</h2>
@@ -53,6 +63,7 @@ const UploadedFilesTab: React.FC = () => {
                 openFileUploadPopup={openFileUploadPopup}
                 openFileMovePopup={openFileMovePopup}
                 openFileSharePopup={openFileSharePopup}
+                openDirectoryCreatePopup={openDirectoryCreatePopup}
                 setFileUploadDirectory={setFileUploadDirectory}
                 refreshFileSystemEntriesInfos={refreshFileSystemEntriesInfoList}
             />
@@ -64,7 +75,7 @@ const UploadedFilesTab: React.FC = () => {
             >
                 Upload to root
             </button>
-            <button onClick={() => setDirectoryCreateCardVisible(true)}>Create directories</button>
+            <button onClick={() => openDirectoryCreatePopup()}>Create directories</button>
 
             {isFileUploadPopupVisible && (
                 <FileUploadPopup
@@ -91,10 +102,11 @@ const UploadedFilesTab: React.FC = () => {
                 />
             )}
 
-            {directoryCreateCardVisible && (
-                <DirectoryNameSetCard
-                    setDirectoryCreateCardVisible={setDirectoryCreateCardVisible}
-                    fileRefreshFunction={refreshFileSystemEntriesInfoList}
+            {isDirectoryCreatePopupVisible && (
+                <DirectoryCreatePopup
+                    parenDirectoryUuid={targetDirUuid}
+                    closePopup={closeDirectoryCreatePopup}
+                    directoryCreateCallback={refreshFileSystemEntriesInfoList}
                 />
             )}
         </>

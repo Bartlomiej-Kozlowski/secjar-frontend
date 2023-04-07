@@ -18,3 +18,17 @@ export const registerUser = async (accountCreationToken: string, password: strin
         return { error: data.status }
     }
 }
+
+export const confirmEmail = async (token: string): Promise<GeneralApiResponseDTO<string>> => {
+    try {
+        const response = await axios.post(`http://localhost:8080/register/confirm?token=${token}`)
+
+        return { data: response.data }
+    } catch (err) {
+        const error = err as AxiosError
+
+        const data = error.response?.data as ApiErrorResponseDTO
+
+        return { error: data.status }
+    }
+}

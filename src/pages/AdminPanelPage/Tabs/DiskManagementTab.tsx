@@ -1,5 +1,5 @@
 import React, {useEffect} from "react"
-import DiskInfo from "../../../components/ DiskManagement/DiskInfo"
+import DiskInfo from "../../../components/DiskManagement/DiskInfo"
 import DiskInfoDTO from "../../../ts/interfaces/DiskInfoDTO"
 import {editDiskInfo, getDiskInfo} from "../../../services/DiskManagementService"
 import {useNavigate} from "react-router-dom"
