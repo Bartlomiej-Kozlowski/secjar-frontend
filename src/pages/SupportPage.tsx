@@ -1,5 +1,6 @@
 import React from "react"
 import { createSupportSubmission } from "../services/SupportService"
+import "../css/GenericForm.css"
 
 const SupportPage: React.FC = () => {
     const nameInputRef = React.useRef<HTMLInputElement>(null)
@@ -24,26 +25,40 @@ const SupportPage: React.FC = () => {
     }
 
     return (
-        <>
-            <h1>Support Page</h1>
-            <form
-                onSubmit={(event) => {
-                    event.preventDefault()
-                    handleSubmit()
-                }}
-            >
-                <label htmlFor="name">Imię: </label>
-                <input ref={nameInputRef} type="text" name="name" id="name" /> <br />
-                <label htmlFor="surname">Nazwisko: </label>
-                <input ref={surnameInputRef} type="text" name="surname" id="surname" /> <br />
-                <label htmlFor="email">E-mail: </label>
-                <input ref={emailInputRef} type="email" name="email" id="email" /> <br />
-                <label htmlFor="description">Opis zgłoszenia: </label> <br />
-                <textarea ref={descriptionInputRef} name="description" id="description" cols={30} rows={10}></textarea> <br />
-                <button type="submit">Wyślij zgłoszenie</button>
-            </form>
-            <div>{submissionMessage}</div>
-        </>
+        <div className="container">
+            <div className="box-outline">
+                <div className="box-content wide-inputBox">
+                    <h1 className="header">Support Page</h1>
+                    <form
+                        onSubmit={(event) => {
+                            event.preventDefault()
+                            handleSubmit()
+                        }}
+                    >
+                        <div className="inputBox">
+                            <input placeholder=" " ref={nameInputRef} type="text" name="name" id="name" />
+                            <label htmlFor="name">Imię: </label>
+                        </div>
+                        <div className="inputBox">
+                            <input placeholder=" " ref={surnameInputRef} type="text" name="surname" id="surname" />
+                            <label htmlFor="surname">Nazwisko: </label>
+                        </div>
+                        <div className="inputBox">
+                            <input placeholder=" " ref={emailInputRef} type="email" name="email" id="email" />
+                            <label htmlFor="email">E-mail: </label>
+                        </div>
+                        <div className="inputBox">
+                            <textarea placeholder=" " ref={descriptionInputRef} name="description" id="description" rows={10} />
+                            <label htmlFor="description">Opis zgłoszenia: </label>
+                        </div>
+                        <div className="buttons">
+                            <button type="submit">Wyślij zgłoszenie</button>
+                        </div>
+                    </form>
+                    <div className="error-message">{submissionMessage}</div>
+                </div>
+            </div>
+        </div>
     )
 }
 
