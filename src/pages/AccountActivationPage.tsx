@@ -1,6 +1,7 @@
 import React from "react"
 import { useSearchParams } from "react-router-dom"
 import { registerUser } from "../services/UserAccountService"
+import "../css/GenericForm.css"
 
 const AccountActivationPage: React.FC = () => {
     const [searchParams] = useSearchParams()
@@ -29,21 +30,28 @@ const AccountActivationPage: React.FC = () => {
     }
 
     return (
-        <>
-            <h1>Account Activation Page</h1>
-
-            <form
-                onSubmit={(event) => {
-                    event.preventDefault()
-                    handleSubmit()
-                }}
-            >
-                <label htmlFor="name">Podaj hasło: </label>
-                <input ref={passwordInputRef} type="password" name="password" id="password" /> <br />
-                <button type="submit">Załóż konto</button>
-            </form>
-            <div>{registerMessage}</div>
-        </>
+        <div className="container">
+            <div className="box-outline">
+                <div className="box-content">
+                    <h1 className="header">Aktywuj konto</h1>
+                    <form
+                        onSubmit={(event) => {
+                            event.preventDefault()
+                            handleSubmit()
+                        }}
+                    >
+                        <div className="inputBox">
+                            <input placeholder=" " ref={passwordInputRef} type="password" name="password" id="password" />
+                            <label htmlFor="name">Podaj hasło: </label>
+                        </div>
+                        <div className="buttons">
+                            <button type="submit">Załóż konto</button>
+                        </div>
+                    </form>
+                    <div className="error-message">{registerMessage}</div>
+                </div>
+            </div>
+        </div>
     )
 }
 
