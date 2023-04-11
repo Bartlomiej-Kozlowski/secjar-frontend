@@ -4,6 +4,7 @@ import { IsLoggedInContext, IsLoggedInContextType } from "../../contexts/IsLogge
 import { login, sendMFAToken } from "../../services/AuthService"
 import LoginPasswordForm from "./LoginPasswordForm"
 import MFAForm from "./MFAForm"
+import "../../css/LoginPage.css"
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate()
@@ -73,13 +74,16 @@ const LoginPage: React.FC = () => {
     }
 
     return (
-        <div>
-            <h1>Login Page</h1>
-            <h2>Formularz logowania</h2>
-            {displayFormStep()}
-            <div className="error-message">{loginError}</div>
-            <Link to={"/passwordReset"}>Zapomniałem hasła</Link> <br />
-            <Link to={"/support"}>Pomoc techniczna</Link>
+        <div className="box-outline">
+            <div className="box-content">
+                <h2 className="header">Formularz logowania</h2>
+                {displayFormStep()}
+                <div className="error-message">{loginError}</div>
+                <div className="links">
+                    <Link to={"/passwordReset"}>Zapomniałem hasła</Link>
+                    <Link to={"/support"}>Pomoc techniczna</Link>
+                </div>
+            </div>
         </div>
     )
 }

@@ -21,9 +21,10 @@ const MFAForm: React.FC<MFAFormProps> = ({ handleMFASubmit }) => {
                 handleSubmit()
             }}
         >
-            <div>
+            <div className="inputBox">
+                <input placeholder=" "  ref={mfaTokenInputRef} type="string" name="mfa" id="mfa" />
                 <label htmlFor="password">Token MFA: </label>
-                <input ref={mfaTokenInputRef} type="string" name="mfa" id="mfa" />
+                <i></i>
             </div>
             <button type="submit">Zaloguj się</button>
         </form>
