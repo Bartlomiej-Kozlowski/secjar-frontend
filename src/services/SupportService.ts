@@ -15,8 +15,6 @@ export const createSupportSubmission = async (name: string, surname: string, ema
     } catch (err) {
         const error = err as AxiosError
 
-        console.log(error)
-
         const data = error.response?.data as ApiErrorResponseDTO
 
         return { error: data.status }

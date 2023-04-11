@@ -1,6 +1,6 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
-import { sendPasswordResetLink } from "../../services/PasswordChangeService"
+import { sendPasswordResetLink } from "../../services/PasswordResetService"
 
 const PasswordResetPage: React.FC = () => {
     const [stage, setStage] = React.useState(0) //current stage of resetting password process

@@ -16,8 +16,6 @@ export const login = async (username: string, password: string, mfaToken?: strin
     } catch (err) {
         const error = err as AxiosError
 
-        console.log(error)
-
         const data = error.response?.data as ApiErrorResponseDTO
 
         return { error: data.status }

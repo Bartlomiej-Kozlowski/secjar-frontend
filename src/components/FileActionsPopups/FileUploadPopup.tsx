@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import "../../css/FileUploadPopup.css"
-import { fileUpload } from "../../services/FileSystemEntryInfoService"
+import { uploadFile } from "../../services/FileSystemEntryInfoService"
 
 interface FileUploadPopupProps {
     targetDirUuid: string | undefined
@@ -13,7 +13,7 @@ const FileUploadPopup: React.FC<FileUploadPopupProps> = ({ fileUploadCallback, c
 
     const handleSubmit = async () => {
         if (fileToUpload != null) {
-            const response = await fileUpload(fileToUpload, false, targetDirUuid)
+            const response = await uploadFile(fileToUpload, false, targetDirUuid)
             fileUploadCallback()
 
             closePopup()

@@ -78,7 +78,7 @@ const LoginPage: React.FC = () => {
             <h2>Formularz logowania</h2>
             {displayFormStep()}
             <div className="error-message">{loginError}</div>
-            <Link to={"/resetPassword"}>Zapomniałem hasła</Link> <br />
+            <Link to={"/passwordReset"}>Zapomniałem hasła</Link> <br />
             <Link to={"/support"}>Pomoc techniczna</Link>
         </div>
     )

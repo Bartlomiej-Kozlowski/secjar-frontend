@@ -2,6 +2,7 @@ import React from "react"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import IsLoggedInProvider from "./contexts/IsLoggedInContext"
 import AccountActivationPage from "./pages/AccountActivationPage"
+import EmailConfirmationPage from "./pages/AccountEmailConfirmPage"
 import AdminPanelPage from "./pages/AdminPanelPage/AdminPanelPage"
 import DashboardTab from "./pages/AdminPanelPage/Tabs/DashboardTab"
 import DiskManagementTab from "./pages/AdminPanelPage/Tabs/DiskManagementTab"
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
     {
         path: "/activateAccount",
         element: <AccountActivationPage />,
+    },
+    {
+        path: "/confirmEmail",
+        element: <EmailConfirmationPage />,
     },
 ])
 

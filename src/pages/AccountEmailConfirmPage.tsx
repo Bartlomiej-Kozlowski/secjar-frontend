@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { confirmEmail } from "../services/UserAccountService"
 
-const AccountEmailConfirmPage: React.FC = () => {
+const EmailConfirmationPage: React.FC = () => {
     const [searchParams] = useSearchParams()
     const [statusMessage, setStatusMessage] = React.useState<string>("")
     const confirmEmailToken = searchParams.get("token")
@@ -38,4 +38,4 @@ const AccountEmailConfirmPage: React.FC = () => {
     )
 }
 
-export default AccountEmailConfirmPage
+export default EmailConfirmationPage
