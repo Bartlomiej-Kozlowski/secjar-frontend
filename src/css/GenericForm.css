@@ -1,0 +1,187 @@
+:root {
+    --input-width: 300px;
+    --input-margin-top: 10px;
+}
+
+.wide-inputBox {
+    --input-width: 500px;
+}
+
+.box-outline {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: min-content;
+    background: #451919;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.box-outline::after,
+.box-outline::before {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    aspect-ratio : 1 / 1;
+    transform-origin: top left;
+    background-image: conic-gradient(from 180deg at 0% 0%,transparent 270deg, var(--secondary-color) 315deg, var(--main-color) 360deg);
+    animation: animate-rotate 6s linear infinite;
+}
+
+.box-outline::after {
+    animation-delay: -3s;
+}
+
+@keyframes animate-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.box-content {
+    position: relative;
+    margin: 2px;
+    height: min-content;
+    background: var(--main-background);
+    padding: 50px 40px;
+    border-radius: 8px;
+    z-index: 2;
+}
+
+.header {
+    color: var(--main-color) ;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+.inputBox {
+    position: relative;
+    min-width: var(--input-width);
+    margin-top: 35px;
+}
+
+.inputBox input,
+.inputBox textarea {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    margin-top: var(--input-margin-top);
+    border-radius: 4px;
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    color: #23242a;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+}
+
+.inputBox textarea {
+    resize: vertical;
+    width: 100%;
+    padding-right: -10px;
+}
+
+.inputBox label {
+    position: absolute;
+    left: 0;
+    padding: 20px 0px 10px;
+    pointer-events: none;
+    font-size: 1em;
+    color: #99908D;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+
+.inputBox input:not(:placeholder-shown) ~ label,
+.inputBox input:focus ~ label {
+    color: var(--main-color);
+    transform: translateX(0px) translateY(-34px);
+    font-size: 0.75em;
+}
+
+.inputBox textarea:not(:placeholder-shown) ~ label,
+.inputBox textarea:focus ~ label {
+    color: var(--main-color);
+    transform: translateX(0px) translateY(-34px);
+    font-size: 0.75em;
+}
+
+.inputBox::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--main-color);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    pointer-events: none;
+    z-index: 9;
+}
+
+.inputBox:has(input:not(:placeholder-shown))::after,
+.inputBox:has(textarea:not(:placeholder-shown))::after,
+.inputBox:focus-within::after {
+    height: calc(100% - var(--input-margin-top));
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.links a {
+    margin: 10px 0;
+    font-size: 0.75em;
+    color: #99908D;
+    text-decoration: #99908D;
+}
+.links a:hover,
+.links a:nth-child(2) {
+    color: var(--main-color);
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+button,
+input[type="submit"] {
+    border: none;
+    outline: none;
+    padding: 11px 25px;
+    background: var(--secondary-color);
+    color: var(--main-color);
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 600;
+    width: fit-content;
+    margin-top: 10px;
+}
+
+input[type="submit"]:active {
+    opacity: 0.8;
+}
+
+.error-message {
+    color: #F11;
+    animation: animate-error 10s linear ;
+    animation-fill-mode: both;
+}
