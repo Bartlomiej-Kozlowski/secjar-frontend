@@ -4,8 +4,8 @@ import Navbar from "../components/Navbar"
 const RootPage: React.FC = () => {
     return (
         <>
+            <Navbar />
             <div className="container">
-                <Navbar />
                 <Outlet />
             </div>
         </>
