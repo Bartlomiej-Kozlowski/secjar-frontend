@@ -1,6 +1,7 @@
 import React from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { resetUserPassword } from "../../services/PasswordResetService"
+import "../../css/GenericForm.css"
 
 const ConfirmPasswordReset: React.FC = () => {
     const [statusMessage, setStatusMessage] = React.useState<string>("")
@@ -30,27 +31,37 @@ const ConfirmPasswordReset: React.FC = () => {
     }
 
     return (
-        <>
-            <form
-                onSubmit={(event) => {
-                    event.preventDefault()
-                    handleSubmit()
-                }}
-            >
-                <label htmlFor="newPassword">Nowe hasło: </label>
-                <input
-                    ref={newPasswordInputRef}
-                    name="newPassword"
-                    id="newPassword"
-                    type="password"
-                    required
-                />
-                <input type="submit" />
-            </form>
+        <div className="container">
+            <div className="box-outline">
+                <div className="box-content">
+                    <h2 className="header">Podaj nowe hasło</h2>
+                    <form
+                        onSubmit={(event) => {
+                            event.preventDefault()
+                            handleSubmit()
+                        }}
+                    >
+                        <div className="inputBox">
+                            <input
+                                placeholder=" "
+                                ref={newPasswordInputRef}
+                                name="newPassword"
+                                id="newPassword"
+                                type="password"
+                                required
+                            />
+                            <label htmlFor="newPassword">Nowe hasło: </label>
+                        </div>
+                        <div className="buttons">
+                            <input type="submit" />
+                            <button onClick={() => navigate("/login")}>Powrót na stronę logowania</button>
+                        </div>
+                    </form>
 
-            {statusMessage && <p>{statusMessage}</p>}
-            <button onClick={() => navigate("/login")}>Powrót na stronę logowania</button>
-        </>
+                    {statusMessage && <div className="error-message">{statusMessage}</div>}
+                </div>
+            </div>
+        </div>
     )
 }
 
