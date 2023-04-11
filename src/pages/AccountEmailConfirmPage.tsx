@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { confirmEmail } from "../services/UserAccountService"
+import "../css/GenericForm.css"
 
 const EmailConfirmationPage: React.FC = () => {
     const [searchParams] = useSearchParams()
@@ -28,12 +29,19 @@ const EmailConfirmationPage: React.FC = () => {
     }
 
     return (
-        <div>
-            {statusMessage && (
-                <div>
-                    {statusMessage} <button onClick={() => navigate("/login")}>Powrót do strony logowania</button>
+        <div className="container">
+            <div className="box-outline">
+                <div className="box-content">
+                    {statusMessage && (
+                        <div>
+                            {statusMessage}
+                            <div className="buttons">
+                                <button onClick={() => navigate("/login")}>Powrót do strony logowania</button>
+                            </div>
+                        </div>
+                    )}
                 </div>
-            )}
+            </div>
         </div>
     )
 }
